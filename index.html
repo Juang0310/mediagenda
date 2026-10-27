@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamiento de Citas</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        header {
+            background: #0f766e;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        main {
+            max-width: 600px;
+            margin: 35px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #00000015;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 7px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        button {
+            margin-top: 22px;
+            background: #0f766e;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #115e59;
+        }
+
+        #mensaje {
+            margin-top: 18px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Agendamiento de Citas</h1>
+        <p>Reserva tu cita de manera sencilla</p>
+    </header>
+
+    <main>
+        <h2>Registrar una cita</h2>
+
+        <form id="formulario">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" required>
+
+            <label for="documento">Documento de identidad</label>
+            <input type="text" id="documento" required>
+
+            <label for="servicio">Servicio</label>
+            <select id="servicio" required>
+                <option value="">Selecciona un servicio</option>
+                <option>Consulta general</option>
+                <option>Control</option>
+                <option>Asesoría</option>
+            </select>
+
+            <label for="fecha">Fecha de la cita</label>
+            <input type="date" id="fecha" required>
+
+            <label for="hora">Hora</label>
+            <input type="time" id="hora" required>
+
+            <button type="submit">Agendar cita</button>
+        </form>
+
+        <p id="mensaje" role="status"></p>
+    </main>
+
+    <footer>
+        Proyecto académico - Servidor Ubuntu con Nginx
+    </footer>
+
+    <script>
+        const formulario = document.getElementById("formulario");
+        const mensaje = document.getElementById("mensaje");
+
+        formulario.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const fecha = document.getElementById("fecha").value;
+
+            if (fecha < new Date().toLocaleDateString("en-CA")) {
+                mensaje.textContent = "Selecciona una fecha válida.";
+                return;
+            }
+
+            mensaje.textContent =
+                "Cita registrada visualmente. La información no se ha guardado en una base de datos.";
+        });
+    </script>
+</body>
+</html>
